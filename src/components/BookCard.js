@@ -14,7 +14,7 @@ const BookCard = (props) => {
                     </Link>
                 </h2>
                 <h3>{book.author}</h3>
-                <p>{book.description}</p>
+                <p>{book.genre}</p>
             </div>
         </div>
     )
