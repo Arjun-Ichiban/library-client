@@ -17,11 +17,9 @@ class UpdateBookInfo extends Component {
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
     axios
       .get('http://localhost:8082/api/books/'+this.props.match.params.id)
       .then(res => {
-        // this.setState({...this.state, book: res.data})
         this.setState({
           title: res.data.title,
           isbn: res.data.isbn,
@@ -71,13 +69,13 @@ class UpdateBookInfo extends Component {
             <div className="col-md-8 m-auto">
               <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                  Show BooK List
+                  SHOW BOOK LIST
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit Book</h1>
+              <h1 className="display-4 text-center">EDIT BOOK</h1>
               <p className="lead text-center">
-                  Update Book's Info
+                  UPDATE BOOK'S INFO
               </p>
             </div>
           </div>
@@ -85,7 +83,7 @@ class UpdateBookInfo extends Component {
           <div className="col-md-8 m-auto">
           <form noValidate onSubmit={this.onSubmit}>
             <div className='form-group'>
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">TITLE</label>
               <input
                 type='text'
                 placeholder='Title of the Book'
@@ -95,22 +93,9 @@ class UpdateBookInfo extends Component {
                 onChange={this.onChange}
               />
             </div>
-            <br />
 
             <div className='form-group'>
-            <label htmlFor="isbn">ISBN</label>
-              <input
-                type='text'
-                placeholder='ISBN'
-                name='isbn'
-                className='form-control'
-                value={this.state.isbn}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className='form-group'>
-            <label htmlFor="author">Author</label>
+            <label htmlFor="isbn">AUTHOR</label>
               <input
                 type='text'
                 placeholder='Author'
@@ -122,41 +107,18 @@ class UpdateBookInfo extends Component {
             </div>
 
             <div className='form-group'>
-            <label htmlFor="description">Description</label>
+            <label htmlFor="author">GENRE</label>
               <input
                 type='text'
-                placeholder='Describe this book'
-                name='description'
+                placeholder='Genre'
+                name='genre'
                 className='form-control'
-                value={this.state.description}
+                value={this.state.genre}
                 onChange={this.onChange}
               />
             </div>
 
-            <div className='form-group'>
-            <label htmlFor="published_date">Published Date</label>
-              <input
-                type='date'
-                placeholder='published_date'
-                name='published_date'
-                className='form-control'
-                value={this.state.published_date}
-                onChange={this.onChange}
-              />
-            </div>
-            <div className='form-group'>
-            <label htmlFor="publisher">Publisher</label>
-              <input
-                type='text'
-                placeholder='Publisher of this Book'
-                name='publisher'
-                className='form-control'
-                value={this.state.publisher}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <button type="submit" className="btn btn-outline-info btn-lg btn-block">Update Book</button>
+            <button type="submit" className="btn btn-outline-info btn-lg btn-block">UPDATE BOOK</button>
             </form>
           </div>
 
