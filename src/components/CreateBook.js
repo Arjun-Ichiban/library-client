@@ -24,7 +24,7 @@ class CreateBook extends Component {
     const data = {
       title: this.state.title,
       author: this.state.author,
-      isbn: this.state.isbn      
+      genre: this.state.genre      
     };
 
     axios
@@ -33,7 +33,7 @@ class CreateBook extends Component {
         this.setState({
           title: '',
           author:'',
-          isbn:''          
+          genre:''          
         })
         this.props.history.push('/');
       })
@@ -88,7 +88,7 @@ class CreateBook extends Component {
                     placeholder='Genre'
                     name='genre'
                     className='form-control'
-                    value={this.state.isbn}
+                    value={this.state.genre}
                     onChange={this.onChange}
                   />
                 </div>
