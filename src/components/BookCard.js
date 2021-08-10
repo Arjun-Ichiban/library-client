@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 const BookCard = (props) => {
-    const book = props.book;
+    const  book  = props.book;
 
     return(
         <div className="card-container">
@@ -13,8 +13,8 @@ const BookCard = (props) => {
                         { book.title }
                     </Link>
                 </h2>
-                <h3>{ book.author }</h3>
-                <p>{ book.description }</p>
+                <h3>{book.author}</h3>
+                <p>{book.description}</p>
             </div>
         </div>
     )
