@@ -8,11 +8,8 @@ class UpdateBookInfo extends Component {
     super(props);
     this.state = {
       title: '',
-      isbn: '',
       author: '',
-      description: '',
-      published_date: '',
-      publisher: ''
+      genre: ''
     };
   }
 
@@ -21,12 +18,9 @@ class UpdateBookInfo extends Component {
       .get('http://localhost:8082/api/books/'+this.props.match.params.id)
       .then(res => {
         this.setState({
-          title: res.data.title,
-          isbn: res.data.isbn,
+          title: res.data.title,         
           author: res.data.author,
-          description: res.data.description,
-          published_date: res.data.published_date,
-          publisher: res.data.publisher
+          genre: res.data.genre
         })
       })
       .catch(err => {
@@ -42,12 +36,9 @@ class UpdateBookInfo extends Component {
     e.preventDefault();
 
     const data = {
-      title: this.state.title,
-      isbn: this.state.isbn,
+      title: this.state.title,    
       author: this.state.author,
-      description: this.state.description,
-      published_date: this.state.published_date,
-      publisher: this.state.publisher
+      genre: this.state.genre
     };
 
     axios
