@@ -4,6 +4,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import BookCard from './BookCard';
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/authActions";
+
 class ShowBookList extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +15,11 @@ class ShowBookList extends Component {
       books: []
     };
   }
+
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
 
   componentDidMount() {
     axios
@@ -27,6 +36,7 @@ class ShowBookList extends Component {
 
 
   render() {
+    //const { user } = this.props.auth;
     const books = this.state.books;
     let bookList;
 
@@ -44,6 +54,18 @@ class ShowBookList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
+              <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              onClick={this.onLogoutClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Logout
+            </button>
               <h2 className="display-4 text-center">BOOK LIST</h2>
             </div>
 
@@ -67,4 +89,16 @@ class ShowBookList extends Component {
   }
 }
 
-export default ShowBookList;
+// export default ShowBookList;
+
+ShowBookList.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(ShowBookList)

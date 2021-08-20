@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/authActions";
+
 class showBookDetails extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +14,11 @@ class showBookDetails extends Component {
       book: {}
     };
   }
+
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
 
   componentDidMount() {
     axios
@@ -28,7 +37,7 @@ class showBookDetails extends Component {
     axios
       .delete('http://localhost:8082/api/books/'+id)
       .then(res => {
-        this.props.history.push("/");
+        this.props.history.push("/show-book");
       })
       .catch(err => {
         console.log("Error form ShowBookDetails_deleteClick");
@@ -66,8 +75,22 @@ class showBookDetails extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-10 m-auto">
+
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              onClick={this.onLogoutClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Logout
+            </button>
+
               <br /> <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
+              <Link to="/book-show" className="btn btn-outline-warning float-left">
                   SHOW BOOK LIST
               </Link>
             </div>
@@ -106,4 +129,16 @@ class showBookDetails extends Component {
   }
 }
 
-export default showBookDetails;
+// export default showBookDetails;
+
+showBookDetails.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(showBookDetails)

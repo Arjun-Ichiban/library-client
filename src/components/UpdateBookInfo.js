@@ -59,7 +59,7 @@ class UpdateBookInfo extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
+              <Link to="/show-book" className="btn btn-outline-warning float-left">
                   SHOW BOOK LIST
               </Link>
             </div>
